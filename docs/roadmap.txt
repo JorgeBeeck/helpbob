@@ -1,0 +1,75 @@
+ROADMAP DO PROJETO HEARTHSTONE OVERLAY
+
+Estado Atual (✓):
+- Aplicação Electron básica funcionando
+- Janela principal sendo exibida
+- Sistema de logs básico implementado
+
+Próximas Etapas:
+
+1. Configuração do Ambiente (Próximo)
+   - Integrar Angular no projeto
+   - Configurar estrutura de pastas para Angular
+   - Configurar build system (electron + angular)
+   - Adicionar TypeScript para maior segurança do código
+
+2. Localização e Leitura dos Logs (Milestone 1)
+   - Identificar localização padrão dos logs do Hearthstone
+   - Implementar sistema de leitura de arquivos
+   - Criar serviço de monitoramento de alterações nos logs
+   - Implementar parser básico para logs
+   - Teste inicial com arquivos de log existentes
+
+3. Interface Básica do Overlay (Milestone 2)
+   - Criar janela transparente
+   - Configurar sempre-no-topo
+   - Implementar sistema de click-through
+   - Adicionar arrastar e soltar para posicionamento
+   - Criar componente básico para exibição de informações
+
+4. Parser de Logs (Milestone 3)
+   - Identificar padrões importantes nos logs
+   - Criar sistema de parser completo
+   - Implementar diferentes tipos de eventos
+   - Criar sistema de filtros de eventos
+   - Testes com diferentes cenários de jogo
+
+5. Features do Overlay (Milestone 4)
+   - Exibir cartas jogadas na partida
+   - Tracking de recursos (mana, cartas na mão, etc)
+   - Histórico de jogadas
+   - Sistema de predição de cartas do oponente
+   - Estatísticas básicas da partida
+
+6. Configurações e UX (Milestone 5)
+   - Interface para configurações
+   - Opções de personalização visual
+   - Atalhos de teclado
+   - Sistema de perfis
+   - Opções de posicionamento do overlay
+
+7. Performance e Polimento (Milestone 6)
+   - Otimização do parser de logs
+   - Melhorias na performance do overlay
+   - Redução do uso de memória
+   - Tratamento de erros
+   - Sistema de auto-atualização
+
+8. Distribuição (Milestone Final)
+   - Configurar electron-builder
+   - Criar instalador
+   - Implementar atualizações automáticas
+   - Preparar documentação de instalação
+   - Testes em diferentes versões do Windows
+
+Notas Importantes:
+- Cada milestone deve ser testado independentemente
+- Manter o código modular para facilitar manutenção
+- Documentar todas as decisões importantes
+- Criar testes para funcionalidades críticas
+- Verificar constantemente as políticas do Hearthstone sobre overlays
+
+Próximos Passos Imediatos:
+1. Configurar Angular no projeto atual
+2. Criar primeira componente básica
+3. Estabelecer comunicação entre Angular e Electron

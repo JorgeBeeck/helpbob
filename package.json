@@ -1,0 +1,26 @@
+{
+  "name": "helpbob",
+  "version": "1.0.0",
+  "description": "Hearthstone Overlay Application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev": "npx electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeBeeck/helpbob.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JorgeBeeck/helpbob/issues"
+  },
+  "homepage": "https://github.com/JorgeBeeck/helpbob#readme",
+  "devDependencies": {
+    "electron": "^37.3.0",
+    "electron-builder": "^26.0.12"
+  }
+}
