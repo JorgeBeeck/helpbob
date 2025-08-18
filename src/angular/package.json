@@ -35,6 +35,8 @@
     "@angular/build": "^20.1.6",
     "@angular/cli": "^20.1.6",
     "@angular/compiler-cli": "^20.1.0",
-    "typescript": "~5.8.2"
+    "concurrently": "^9.2.0",
+    "typescript": "~5.8.2",
+    "wait-on": "^8.0.4"
   }
 }

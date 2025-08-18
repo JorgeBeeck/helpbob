@@ -1,14 +1,23 @@
 ROADMAP DO PROJETO HEARTHSTONE OVERLAY
 
 Estado Atual (✓):
+[FASE 1 - CONCLUÍDA em 18/08/2025]
 - Aplicação Electron básica funcionando
 - Janela principal sendo exibida
 - Sistema de logs básico implementado
+- Estrutura de documentação criada
+- Repositório Git configurado
+- README e Documentação inicial
 
-Próximas Etapas:
-
-1. Configuração do Ambiente (Próximo)
-   - Integrar Angular no projeto
+[FASE 2 - EM PROGRESSO desde 18/08/2025]
+1. Configuração do Ambiente (✓)
+   - Integrar Angular no projeto ✓
+   - Criar componente de teste ✓
+   - Configurar ambiente de desenvolvimento ✓
+   
+   Próximos passos:
+   - Configurar build system (electron + angular)
+   - Sistema de comunicação IPC
    - Configurar estrutura de pastas para Angular
    - Configurar build system (electron + angular)
    - Adicionar TypeScript para maior segurança do código

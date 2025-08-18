@@ -21,7 +21,8 @@ function createWindow () {
     console.log('Janela mostrada!')
   })
 
-  win.loadFile('index.html')
+  // Em desenvolvimento, carrega do servidor Angular
+  win.loadURL('http://localhost:4200')
 }
 
 app.whenReady().then(() => {

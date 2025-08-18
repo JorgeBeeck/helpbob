@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { OverlayWindow } from './overlay-window/overlay-window';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, OverlayWindow],
   template: `
-    <h1>Welcome to {{ title() }}!</h1>
-
+    <app-overlay-window></app-overlay-window>
     <router-outlet />
   `,
   styles: [],
