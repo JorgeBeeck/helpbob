@@ -9,15 +9,20 @@ Estado Atual (✓):
 - Repositório Git configurado
 - README e Documentação inicial
 
-[FASE 2 - EM PROGRESSO desde 18/08/2025]
+[FASE 2 - CONCLUÍDA em 18/08/2025]
 1. Configuração do Ambiente (✓)
    - Integrar Angular no projeto ✓
    - Criar componente de teste ✓
    - Configurar ambiente de desenvolvimento ✓
-   
+
+[FASE 3 - INICIANDO em 18/08/2025]
+2. Leitura e Parsing de Logs
+   - Documentação de logs criada ✓
    Próximos passos:
-   - Configurar build system (electron + angular)
-   - Sistema de comunicação IPC
+   - Implementar FileSystemWatcher
+   - Criar parser básico para Power.log
+   - Desenvolver sistema de eventos
+   - Integrar com interface do overlay
    - Configurar estrutura de pastas para Angular
    - Configurar build system (electron + angular)
    - Adicionar TypeScript para maior segurança do código
