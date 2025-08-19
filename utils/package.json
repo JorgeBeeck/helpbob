@@ -1,0 +1,9 @@
+{
+  "name": "helpbob-utils",
+  "version": "1.0.0",
+  "description": "Utilitários para desenvolvimento do HelpBob",
+  "scripts": {
+    "logs": "node open-logs.js"
+  },
+  "private": true
+}

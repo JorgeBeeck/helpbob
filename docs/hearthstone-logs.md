@@ -46,12 +46,17 @@ D 19:23:45.9001570 GameState.DebugPrintPower() - FULL_ENTITY - Создание 
 ## 🔄 Como o Sistema de Logs Funciona
 
 1. **Ativação dos Logs**
-   ```
-   [Hearthstone]/log.config
-   ```
-   Configuração necessária para habilitar logs detalhados:
+   Para detalhes completos sobre a configuração e exemplos de uso, consulte nossa [documentação detalhada](hearthstone-logs-detalhado.md).
+   
+   Configuração básica (`log.config`):
    ```config
    [Power]
+   LogLevel=1
+   FilePrinting=true
+   ConsolePrinting=true
+   ScreenPrinting=false
+
+   [Zone]
    LogLevel=1
    FilePrinting=true
    ConsolePrinting=true

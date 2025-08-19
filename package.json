@@ -8,7 +8,8 @@
     "start": "electron .",
     "electron:serve": "electron .",
     "angular:serve": "cd src/angular && ng serve",
-    "dev": "concurrently \"npm run angular:serve\" \"wait-on http://localhost:4200 && npm run electron:serve\""
+    "dev": "concurrently \"npm run angular:serve\" \"wait-on http://localhost:4200 && npm run electron:serve\"",
+    "logs": "node utils/open-logs.js"
   },
   "repository": {
     "type": "git",

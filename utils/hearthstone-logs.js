@@ -7,8 +7,15 @@ class HearthstoneLogUtils {
         this.hsDataPath = path.join(this.hsPath, 'Hearthstone_Data');
         this.configPath = path.join(process.env.LOCALAPPDATA, 'Blizzard', 'Hearthstone', 'log.config');
         this.outputPath = path.join(this.hsDataPath, 'output_log.txt');
-        // Novo: logs estão sendo gerados direto na pasta Hearthstone_Data
-        this.powerPath = path.join(this.hsDataPath, 'Power.log');
+        
+        // Define os caminhos para todos os logs
+        this.logPaths = {
+            power: path.join(this.hsDataPath, 'Power.log'),
+            zone: path.join(this.hsDataPath, 'Zone.log'),
+            asset: path.join(this.hsDataPath, 'Asset.log'),
+            bob: path.join(this.hsDataPath, 'Bob.log'),
+            net: path.join(this.hsDataPath, 'Net.log')
+        };
         
         this.configContent = `[Power]
 LogLevel=1
@@ -44,12 +51,88 @@ ScreenPrinting=false`;
     }
 
     checkStatus() {
-        return {
+        const status = {
             instalado: fs.existsSync(this.hsPath),
             config: fs.existsSync(this.configPath),
-            power: fs.existsSync(this.powerPath),
-            output: fs.existsSync(this.outputPath)
+            logs: {}
         };
+
+        // Verifica cada arquivo de log
+        for (const [key, path] of Object.entries(this.logPaths)) {
+            status.logs[key] = {
+                exists: fs.existsSync(path),
+                size: fs.existsSync(path) ? fs.statSync(path).size : 0,
+                updatedAt: fs.existsSync(path) ? fs.statSync(path).mtime : null
+            };
+        }
+
+        return status;
+    }
+
+    async verifyLogsSetup() {
+        console.log('\n🔍 Verificando configuração dos logs:');
+        console.log('----------------------------------------');
+
+        // 1. Verifica o processo do Hearthstone
+        const isRunning = await this.isHearthstoneRunning();
+        console.log(`Hearthstone em execução: ${isRunning ? '✅' : '❌'}`);
+
+        // 2. Verifica o arquivo de configuração
+        if (fs.existsSync(this.configPath)) {
+            const content = fs.readFileSync(this.configPath, 'utf8');
+            const configOk = content.includes('[Power]') && 
+                           content.includes('[Zone]') && 
+                           content.includes('[Asset]') &&
+                           content.includes('[Bob]') &&
+                           content.includes('[Net]');
+            
+            console.log(`\nArquivo de configuração:`);
+            console.log(`├── Existe: ✅`);
+            console.log(`└── Configuração correta: ${configOk ? '✅' : '❌'}`);
+
+            if (!configOk) {
+                console.log('\n⚠️  Configuração atual pode estar incompleta.');
+                console.log('💡 Dica: Execute setupConfig() para atualizar.');
+            }
+        }
+
+        // 3. Verifica os arquivos de log
+        console.log('\nArquivos de log:');
+        const status = this.checkStatus();
+        
+        for (const [key, info] of Object.entries(status.logs)) {
+            const symbol = info.exists ? '✅' : '❌';
+            const details = info.exists 
+                ? `(${Math.round(info.size / 1024)}KB, última atualização: ${info.updatedAt.toLocaleTimeString()})`
+                : '(arquivo não existe)';
+            
+            console.log(`├── ${key}.log: ${symbol} ${details}`);
+            
+            if (info.exists && info.size === 0) {
+                console.log(`│   ⚠️  Arquivo vazio! Pode indicar problemas de permissão.`);
+            }
+        }
+
+        // 4. Verifica permissões
+        try {
+            const testFile = path.join(this.hsDataPath, 'test.tmp');
+            fs.writeFileSync(testFile, 'test');
+            fs.unlinkSync(testFile);
+            console.log('\n✅ Permissões de escrita OK');
+        } catch (error) {
+            console.log('\n❌ Problemas com permissões de escrita!');
+            console.log('💡 Dica: Execute o Hearthstone como administrador.');
+        }
+    }
+
+    async isHearthstoneRunning() {
+        try {
+            const { execSync } = require('child_process');
+            const output = execSync('tasklist /FI "IMAGENAME eq Hearthstone.exe" /FO CSV /NH', { encoding: 'utf8' });
+            return output.includes('Hearthstone.exe');
+        } catch {
+            return false;
+        }
     }
 
     async showInfo() {
@@ -66,6 +149,9 @@ ScreenPrinting=false`;
         console.log('----------------------------------------');
         console.log(`Config: ${status.config ? '✅' : '❌'}`);
         console.log(`└── ${this.configPath}`);
+
+        // Verificar configuração detalhada
+        await this.verifyLogsSetup();
 
         // Monitora os logs ativamente
         await this.monitorLogs();

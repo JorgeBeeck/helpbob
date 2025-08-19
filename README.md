@@ -29,6 +29,21 @@ HelpBob é um overlay inteligente para Hearthstone, desenvolvido com Electron e 
 
 *Em desenvolvimento - Instruções de instalação serão adicionadas em breve*
 
+## 🔧 Utilitários para Desenvolvedores
+
+### Visualizador de Logs
+Para abrir a pasta de logs do Hearthstone e verificar os arquivos:
+```bash
+npm run logs
+```
+
+Este utilitário:
+- Verifica a existência dos arquivos de log
+- Abre a pasta de logs no explorador de arquivos
+- Tenta abrir o arquivo Power.log
+
+> 💡 Certifique-se de que o Hearthstone foi executado pelo menos uma vez antes de usar este utilitário.
+
 ## 📝 Roadmap
 
 Confira nosso [Roadmap](docs/roadmap.txt) para ver o que está planejado!

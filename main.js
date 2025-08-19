@@ -1,9 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const LogWatcher = require('./services/LogWatcher')
 
 console.log('Iniciando aplicação...')
-let logWatcher;
 
 function createWindow () {
   console.log('Criando janela...')
@@ -17,15 +15,13 @@ function createWindow () {
     show: false  // Não mostrar até estar pronto
   })
   
-  // Quando estiver pronto, mostre a janela e inicie o watcher
+  // Quando estiver pronto, mostre a janela
   win.once('ready-to-show', () => {
     win.show()
     console.log('Janela mostrada!')
-    logWatcher = new LogWatcher(win)
   })
 
-  // Em desenvolvimento, carrega do servidor Angular
-  win.loadURL('http://localhost:4200')
+  win.loadFile('index.html')
 }
 
 app.whenReady().then(() => {
@@ -40,9 +36,6 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    if (logWatcher) {
-      logWatcher.stopWatching()
-    }
     app.quit()
   }
 })
